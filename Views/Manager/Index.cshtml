@@ -1,0 +1,32 @@
+@model IEnumerable<Books>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Kategori</th>
+            <th>Durum</th>
+            <th>detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Name</td>
+                <td>@u.category.Name</td>
+                <td>
+                    @if (u.IsAvailable)
+                    {
+                        @:Kullanıma Müsait
+                    }
+                    else
+                    {
+                        @:Kullanımda
+                    }
+                </td>
+                
+                <td><a  class="btn btn-primary" asp-action="Details" asp-route-id="@u.BooksId">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

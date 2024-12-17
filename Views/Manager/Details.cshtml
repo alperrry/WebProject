@@ -1,0 +1,43 @@
+@model Books
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Kategori</th>
+            <th>Durum</th>
+            <th>detay</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.category.Name</td>
+            <td>
+                @if (Model.IsAvailable)
+                {
+                    @:Kullanıma Müsait
+                }
+                else
+                {
+                    @:Kullanımda
+                }
+            </td>
+
+
+
+
+        </tr>
+
+    </tbody>
+</table>
+<div class="btn-group" asp-controller="Manager" role="group" aria-label="Button group">
+    <button asp-action="toUser" class="btn btn-sm ">To User</button>
+    <button asp-action="toLibrary" class="btn btn-sm">Get Back</button>
+    <a  asp-action="Edit" class="btn btn-sm ">Edit</a>
+    <form method="post" asp-action="Delete" asp-route-id="@Model.BooksId"
+        onsubmit="return confirm('Kitabı silmek istediğinize emin misiniz?');" class="d-inline">
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    </form>
+</div>

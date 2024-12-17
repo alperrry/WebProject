@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<LibraryDbContext>(options=>{
+    var config=builder.Configuration;
+    var Connectionstring=config.GetConnectionString("Sql_connection");
+
+options.UseSqlite(Connectionstring);
+} );
 
 var app = builder.Build();
 
@@ -23,5 +31,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+    LibrarySeedData.SeedData(app);
 
 app.Run();
