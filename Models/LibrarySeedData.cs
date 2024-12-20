@@ -1,22 +1,90 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 public class LibrarySeedData
 {
-    public static async void SeedData(IApplicationBuilder app)
+    public static async Task  SeedData(IApplicationBuilder app)
     {
-        var context = app.ApplicationServices.CreateScope().ServiceProvider.GetService<LibraryDbContext>();
+        var serviceScope = app.ApplicationServices.CreateScope();
+        var context = serviceScope.ServiceProvider.GetService<LibraryDbContext>();
+        var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+        var userManager = serviceScope.ServiceProvider.GetService<UserManager<AppUser>>();
 
         if (context != null)
         {
+
             if (context.Database.GetPendingMigrations().Any())
             {
-                 context.Database.Migrate();
+                context.Database.Migrate();
             }
 
-           
+
+            string[] roles = { "Admin", "User", "Assistant" };
+            foreach (var role in roles)
+            {
+                if (roleManager != null && !await roleManager.RoleExistsAsync(role))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+
+
+            var adminEmail = "admin@example.com";
+            var adminPassword = "Admin123!";
+            if (userManager != null)
+            {
+                var adminUser = await userManager.FindByEmailAsync(adminEmail);
+                if (adminUser == null)
+                {
+                    adminUser = new AppUser
+                    {
+                        UserName = adminEmail,
+                        Email = adminEmail,
+                        EmailConfirmed = true
+                    };
+
+                    var result = await userManager.CreateAsync(adminUser, adminPassword);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(adminUser, "Admin");
+                    }
+                }
+            }
+            var users = new List<(string Email, string Password, string Role)>
+{
+    ("user1@example.com", "User123!", "User"),
+    ("user2@example.com", "User123!", "User"),
+    ("user3@example.com", "User123!", "User"),
+    ("assistant@example.com", "Assistant123!", "Assistant")
+};
+
+            foreach (var (email, password, role) in users)
+            {
+
+                var user = await userManager.FindByEmailAsync(email);
+
+                if (user == null)
+                {
+                    user = new AppUser
+                    {
+                        UserName = email,
+                        Email = email,
+                        EmailConfirmed = true
+                    };
+
+                    var result = await userManager.CreateAsync(user, password);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(user, role);
+                    }
+                }
+            }
+
             if (!context.categories.Any())
             {
-                
+
                 var categories = new List<Category>
                 {
                     new Category { CategoryId = 000, Name = " Bilgisayar bilimi, enformatik & genel çalışmalar" },
@@ -34,6 +102,7 @@ public class LibrarySeedData
                 await context.categories.AddRangeAsync(categories);
                 await context.SaveChangesAsync();
             }
+
 
             if (!context.books.Any())
             {

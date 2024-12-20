@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class LibraryDbContext:IdentityDbContext
+public class LibraryDbContext:IdentityDbContext<AppUser>
 {
     public LibraryDbContext(DbContextOptions<LibraryDbContext> options):base(options)
     {

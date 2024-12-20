@@ -26,8 +26,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxEZXRhaWxzLmNzaHRtbA==
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Assistants.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBc3Npc3RhbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Edit.cshtml]
@@ -36,6 +36,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/toLibrary.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclx0b0xpYnJhcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/toUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclx0b1VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxVc2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Shared/Error.cshtml]

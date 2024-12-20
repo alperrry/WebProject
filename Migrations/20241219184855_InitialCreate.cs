@@ -175,11 +175,18 @@ namespace WebProject.Migrations
                     BooksId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AppUserId = table.Column<string>(type: "TEXT", nullable: true),
+                    IsAvailable = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_books", x => x.BooksId);
+                    table.ForeignKey(
+                        name: "FK_books_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_books_categories_CategoryId",
                         column: x => x.CategoryId,
@@ -224,6 +231,11 @@ namespace WebProject.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_books_AppUserId",
+                table: "books",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_books_CategoryId",

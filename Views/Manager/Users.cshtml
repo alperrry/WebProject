@@ -1,0 +1,43 @@
+@model IEnumerable<AppUser>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Message"]
+    </div>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Email</th>
+            <th>Kullandığı Kitaplar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.UserName</td>
+                <td>@u.Email</td>
+                <td>
+                    @if (u.BorrowedBooks.Count()==0)
+                    {
+                        @:Kullandığı Kitap yok
+                    }
+                    else
+                    {
+                        <ul>
+                            @foreach (var book in u.BorrowedBooks)
+                            {
+                                <li>@book.Name</li>
+                            }
+                        </ul>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
