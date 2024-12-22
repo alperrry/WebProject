@@ -1,8 +1,79 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Library Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+<div class="container text-center mt-5" style="padding-top: 170px;">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-3" style="color: #4e342e; font-weight: bold;">Welcome to Our Library</h1>
+            <p class="lead" style="color: #6d4c41;">Your gateway to knowledge and discovery</p>
+        </div>
+    </div>
+
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-center">
+                <a href="/Account/Create" class="btn btn-lg mx-2" style="background-color: #8d6e63; color: white; font-size: 1.2rem; padding: 10px 20px; border-radius: 8px;">
+                    Sign Up
+                </a>
+                <a href="/Account/Login" class="btn btn-lg mx-2" style="background-color: #6d4c41; color: white; font-size: 1.2rem; padding: 10px 20px; border-radius: 8px;">
+                    Login
+                </a>
+            </div>
+        </div>
+    </div>
+  
+
+
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm" style="border: none; background-color: #efebe9;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #5d4037;">Explore Books</h5>
+                    <p class="card-text" style="color: #795548;">Discover a wide variety of books available for you.</p>
+                </div>
+            </div>
+        </div>
+
+       <div class="col-md-4">
+            <div class="card shadow-sm" style="border: none; background-color: #efebe9;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #5d4037;">Dive into Knowledge</h5>
+                    <p class="card-text" style="color: #795548;">"A library is not a building but a universe waiting to be explored."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm" style="border: none; background-color: #efebe9;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #5d4037;">Contact Us</h5>
+                    <p class="card-text" style="color: #795548;">Have questions? Reach out to our team for assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<style>
+    /* Arka Plan Resmi Ekleme */
+    body {
+        background-image: url('/images/Welcome to Our.png'); /* Resmin yolu */
+        background-size: cover; /* Resmin sayfa boyutlarına uyum sağlamasını sağlar */
+        background-position: center center; /* Resmin ortalanmasını sağlar */
+        background-repeat: no-repeat; /* Resmin tekrar etmesini engeller */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .custom-margin:100px;
+
+    }
+    
+    .btn:hover {
+        opacity: 0.9;
+    }
+    
+</style>

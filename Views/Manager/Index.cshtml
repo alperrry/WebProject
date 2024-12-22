@@ -16,7 +16,10 @@
             <th>Kitap Adı</th>
             <th>Kategori</th>
             <th>Durum</th>
+            @if(User.IsInRole("Admin")||User.IsInRole("Assistant"))
+            {
             <th>Detay</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -37,6 +40,7 @@
 
                     }
                 </td>
+                 @if(User.IsInRole("Admin")||User.IsInRole("Assistant")){
                 <td>
                     <!-- 3 Nokta Sembolü (ellipsis) ile butonları açma -->
                     <button class="btn-ellipsis" onclick="toggleButtons('@u.BooksId')">
@@ -59,7 +63,7 @@
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
                     </div>
-                </td>
+                </td>}
             </tr>
         }
     </tbody>

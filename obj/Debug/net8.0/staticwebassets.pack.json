@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\alper\\OneDrive\\Masaüstü\\WebProject\\wwwroot\\images\\Welcome to Our.png",
+      "PackagePath": "staticwebassets\\images\\Welcome to Our.png"
+    },
+    {
+      "Id": "C:\\Users\\alper\\OneDrive\\Masaüstü\\WebProject\\wwwroot\\images\\kitapfoto.jpg",
+      "PackagePath": "staticwebassets\\images\\kitapfoto.jpg"
+    },
+    {
       "Id": "C:\\Users\\alper\\OneDrive\\Masaüstü\\WebProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

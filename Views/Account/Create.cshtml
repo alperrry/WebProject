@@ -1,0 +1,62 @@
+@model CreateViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            
+            margin-top: 0;
+            background-image: url('/images/kitapfoto.jpg'); /* Görselin yolu */
+            background-size: cover;
+            background-attachment: fixed;
+             background-position: center -110px;
+            
+            
+        }
+    </style>
+</head>
+<body>
+
+<div  class="container mt-5"> 
+    <div class="row justify-content-center"> 
+        <div class="col-md-6"> 
+            <div class="display-6 text-center mb-4 " style="font-size: 3rem;color: #6e4f30; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Sign Up</div>
+
+<hr style="border: 3px solid #79604d;">
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="UserName">UserName</label>
+        <input asp-for="UserName" class="form-control">
+    </div>
+   
+    <div class="mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control">
+    </div>
+    <div class="text-center mt-4" style="text-align: center;">
+  
+  <button class="btn" style="background-color: #886848; color: white; margin: 0 auto;" type="submit">Submit</button>
+  </div>
+  <div class="text-center mt-4" style="text-align: center;">
+  <p style="display: inline-block; margin-top: 10px;">
+    Already have one?
+    <a style="color:#6e4f30" asp-controller="Account" asp-action="Login">Login</a>
+  </p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body>

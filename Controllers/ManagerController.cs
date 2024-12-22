@@ -1,16 +1,19 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
+[Authorize]
 public class ManagerController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly RoleManager<IdentityRole>  _roleManager;
     private readonly LibraryDbContext _context;
-    public ManagerController(LibraryDbContext context, UserManager<AppUser> userManager)
+    public ManagerController(LibraryDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole>  roleManager)
     {
         _context = context;
         _userManager = userManager;
+        _roleManager=roleManager;
     }
 
     public async Task<IActionResult> Index()
@@ -169,5 +172,38 @@ public class ManagerController : Controller
         TempData["Message"] = "Kitap başarıyla teslim alındı";
         return RedirectToAction("Index");
     }
+
+    public IActionResult Create()
+    {
+        var allowedRoles = new List<string> { "User", "Assistant" }; // Seçmek istediğiniz roller
+        ViewBag.Roles = _roleManager.Roles.Where(u => allowedRoles.Contains(u.Name)).ToList();
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(AssistantViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = new AppUser { UserName = model.UserName, Email = model.Email };
+        var result = await _userManager.CreateAsync(user, model.Password);
+
+        if (result.Succeeded)
+        {            await _userManager.AddToRoleAsync(user, model.selectedRole);
+
+            TempData["message"] = "Kullanıcı başarıyla oluşturuldu.";
+            return RedirectToAction("Index", "Manager");
+        }
+        else
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description); // Hataları ModelState'e ekle
+            }
+        }
+    }
+
+    return View(model); // Hatalar varsa aynı sayfaya dön
+}
 
 }
