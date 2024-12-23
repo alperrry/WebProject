@@ -1,7 +1,7 @@
-@model CreateViewModel
+@model AssistantViewModel
 <h2>Create User </h2>
 <hr>
-<form asp-action="Create" method="post">
+<form asp-action="Createuser" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="mb-3">
         <label asp-for="UserName">UserName</label>
@@ -20,14 +20,16 @@
         <label asp-for="ConfirmPassword"></label>
         <input asp-for="ConfirmPassword" class="form-control">
     </div>
-    <div class="mb-3">
-        <label for="role"></label>
-        <select class="form-select" id="category" name="CategoryId">
+<div>
+    <label asp-for="selectedRole">Role</label>
+    <select class="form-select" asp-for="selectedRole" id="role" name="selectedRole">
         @foreach (var role in ViewBag.Roles)
         {
             <option value="@role.Id">@role.Name</option>
         }
     </select>
-    </div>
-    <button type="submit"  class="btn btn-primary">Submit</button>
+</div>
+
+
+    <button type="submit"  class="btn btn-primary btn-success">Submit</button>
 </form>

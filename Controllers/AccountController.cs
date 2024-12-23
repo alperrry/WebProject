@@ -8,98 +8,100 @@ public class AccountController : Controller
     private readonly RoleManager<IdentityRole> _roleManager;
     private SignInManager<AppUser> _signInManager;
 
-
-    public AccountController (UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+    // Constructor to initialize dependencies for user and role management
+    public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
     {
         _userManager = userManager;
         _roleManager = roleManager;
         _signInManager = signInManager;
     }
 
-
-
+    // Display the login page
     public IActionResult Login()
-
     {
         return View();
     }
 
+    // Handle the login process
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
-        if (ModelState.IsValid)
+        if (ModelState.IsValid) // Check if the provided model is valid
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email); // Find user by email
 
             if (user != null)
             {
-                await _signInManager.SignOutAsync();
-              
+                await _signInManager.SignOutAsync(); // Sign out any existing user
+
+                // Attempt to sign in the user
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
                 if (result.Succeeded)
                 {
-                    await _userManager.ResetAccessFailedCountAsync(user);
-                    await _userManager.SetLockoutEndDateAsync(user, null);
+                    await _userManager.ResetAccessFailedCountAsync(user); // Reset failed access attempts
+                    await _userManager.SetLockoutEndDateAsync(user, null); // Clear lockout end date
 
-                    return RedirectToAction("Index", "Manager");
+                    return RedirectToAction("Index", "Manager"); // Redirect to the manager's index page
                 }
                 else if (result.IsLockedOut)
                 {
+                    // If the account is locked, calculate the remaining lockout time
                     var lockoutDate = await _userManager.GetLockoutEndDateAsync(user);
                     var timeleft = lockoutDate.Value - DateTime.UtcNow;
-                    ModelState.AddModelError("", $"Hesabınız kilitlendi ,Lütfen {timeleft.Minutes} dakika sonra deneyiniz. ");
+                    ModelState.AddModelError("", $"Your account is locked. Please try again in {timeleft.Minutes} minutes.");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "hatalı  parola");
+                    ModelState.AddModelError("", "Invalid password.");
                 }
             }
             else
             {
-                ModelState.AddModelError("", "hatalı email");
+                ModelState.AddModelError("", "Invalid email.");
             }
         }
-        return View(model);
+        return View(model); // Return the view with validation errors if any
     }
+
+    // Display the user creation page
     public IActionResult Create()
     {
         return View();
     }
 
+    // Handle the creation of a new user
     [HttpPost]
     public async Task<IActionResult> Create(CreateViewModel model)
-{
-    if (ModelState.IsValid)
     {
-        var user = new AppUser { UserName = model.UserName, Email = model.Email };
-        var result = await _userManager.CreateAsync(user, model.Password);
-
-        if (result.Succeeded)
-        {            await _userManager.AddToRoleAsync(user, "User");
-
-            TempData["message"] = "Kullanıcı başarıyla oluşturuldu.";
-            return RedirectToAction("Index", "Manager");
-        }
-        else
+        if (ModelState.IsValid) // Check if the provided model is valid
         {
-            foreach (var error in result.Errors)
+            var user = new AppUser { UserName = model.UserName, Email = model.Email }; // Create a new user object
+            var result = await _userManager.CreateAsync(user, model.Password); // Save the user in the database
+
+            if (result.Succeeded)
             {
-                ModelState.AddModelError("", error.Description); // Hataları ModelState'e ekle
+                await _userManager.AddToRoleAsync(user, "User"); // Assign the "User" role to the new user
+
+                TempData["message"] = "User successfully created."; // Display a success message
+                return RedirectToAction("Index", "Manager"); // Redirect to the manager's index page
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description); // Add any errors to the model state
+                }
             }
         }
+
+        return View(model); // Return the view with validation errors if any
     }
 
-    return View(model); // Hatalar varsa aynı sayfaya dön
-}
+    // Log out the current user
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync(); // Sign out the current user
 
-public async Task<IActionResult> Logout()
-{
-    // Oturumdan çıkış yap
-    await _signInManager.SignOutAsync();
-
-    // Kullanıcıyı giriş sayfasına yönlendir
-    return RedirectToAction("Login", "Account");
-}
-
-  
+        return RedirectToAction("Login", "Account"); // Redirect to the login page
+    }
 }

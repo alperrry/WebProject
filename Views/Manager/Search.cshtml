@@ -1,22 +1,25 @@
 @model IEnumerable<Books>
-    @if (TempData["Message"] != null)
+@if (TempData["Message"] != null)
 {
     <div class="alert alert-danger">
         @TempData["Message"]
     </div>
 }
 <form asp-action="Search" method="post">
-    <input type="text" name="name" placeholder="Enter product name" />
+    <input type="text" name="name" placeholder="Enter book name" />
     <button type="submit">Search</button>
 </form>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Kitap Adı</th>
-            <th>Kategori</th>
-            <th>Durum</th>
-            <th>Detay</th>
+            <th>Book's Name</th>
+            <th>Category</th>
+            <th>Is Available</th>
+            @if(User.IsInRole("Admin")||User.IsInRole("Assistant"))
+            {
+            <th>Details</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -28,15 +31,16 @@
                 <td>
                     @if (u.IsAvailable)
                     {
-                        <div class="alert alert-success">Kullanıma Müsait</div>
+                        <div class="alert alert-success">Available</div>
 
                     }
                     else
                     {
-                        <div class="alert alert-danger">Kullanımda</div>
+                        <div class="alert alert-danger">Not Available</div>
 
                     }
                 </td>
+                 @if(User.IsInRole("Admin")||User.IsInRole("Assistant")){
                 <td>
                     <!-- 3 Nokta Sembolü (ellipsis) ile butonları açma -->
                     <button class="btn-ellipsis" onclick="toggleButtons('@u.BooksId')">
@@ -59,7 +63,7 @@
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
                     </div>
-                </td>
+                </td>}
             </tr>
         }
     </tbody>

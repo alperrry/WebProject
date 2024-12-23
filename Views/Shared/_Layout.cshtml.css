@@ -46,3 +46,11 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+footer a {
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+  color: brown; /* Yazı rengini kahverengi yapar */
+}
+
+footer a:hover {
+  color: darkbrown; /* İsteğe bağlı: Üzerine gelindiğinde koyu kahverengi yapar */
+}

@@ -26,20 +26,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Home/Contactus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Assistants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBc3Npc3RhbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxDcmVhdGUuY3NodG1s
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Createbook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxDcmVhdGVib29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Createuser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxDcmVhdGV1c2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Edit.cshtml]
@@ -52,10 +56,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxTZWFyY2guY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/toLibrary.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclx0b0xpYnJhcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alper/OneDrive/Masaüstü/WebProject/Views/Manager/toUser.cshtml]

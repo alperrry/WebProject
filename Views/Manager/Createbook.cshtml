@@ -1,0 +1,24 @@
+@model BookViewModel
+
+<h2>Create Book</h2>
+<hr>
+<form asp-action="Createbook" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="name">Book Name</label>
+        <input asp-for="name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId">Category</label>
+        <select class="form-select" asp-for="CategoryId">
+            @foreach (var category in ViewBag.categories)
+            {
+                <option value="@category.CategoryId">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-success">Submit</button>
+</form>

@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @ViewData["Message"]
+        </div>
+    }
+
+    <p class="lead">We'd love to hear from you! Please fill out the form below to get in touch with us.</p>
+
+    <form method="post" action="/Home/Contactus">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="Name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="Message" rows="5" placeholder="Write your message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
